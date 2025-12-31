@@ -1,14 +1,20 @@
 {
   "name": "drizzle-supabase",
-  "module": "index.ts",
+  "module": "src/server.ts",
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "bun run index.ts",
+    "dev": "bun run --hot src/server.ts",
+    "start": "bun run src/server.ts",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "db:test": "bun run src/db/test-connection.ts",
+    "test": "bun test",
+    "test:db": "bun test src/tests/db.test.ts",
+    "test:api": "bun test src/tests/api.test.ts",
+    "test:schema": "bun test src/tests/schema.test.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",
@@ -18,7 +24,10 @@
     "typescript": "^5"
   },
   "dependencies": {
+    "@hono/zod-validator": "^0.7.6",
     "drizzle-orm": "^0.45.1",
-    "postgres": "^3.4.7"
+    "hono": "^4.11.3",
+    "postgres": "^3.4.7",
+    "zod": "^4.2.1"
   }
 }
